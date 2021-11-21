@@ -23,18 +23,24 @@ def scrape():
     news_title = results[0].find('div', class_='content_title').text
     # Identify and return paragraph
     news_p = results[0].find('div', class_='article_teaser_body').text
+
+    # news Dictionary to be inserted into MongoDB
+    mars_news = {
+        'news_title': news_title,
+        'news_p': news_p,
+    }
     # Print results
     print(news_title)
     print(news_p)
 
-    # ## JPL Mars Space Images - Featured Image
+    # ## JPL Mars Space Images - Featured Image ===================================================
     url = 'https://spaceimages-mars.com'
     browser.visit(url)
 
     html = browser.html
     # Create BeautifulSoup object; parse with 'html.perser'
     soup = BeautifulSoup(html, 'html.parser')
-    print(soup.prettify())
+    # print(soup.prettify())
 
     # click the eatured Mars Image botton
     browser.links.find_by_partial_text('FULL IMAGE').click()
@@ -42,7 +48,7 @@ def scrape():
     html = browser.html
     # Create BeautifulSoup object; parse with 'html.perser'
     soup = BeautifulSoup(html, 'html.parser')
-    print(soup.prettify())
+    # print(soup.prettify())
 
     # Examine the results, then determine element that contains sought info
     # results are returned as an iterable list
@@ -52,8 +58,10 @@ def scrape():
     link = results[0]['src']
     featured_image_url = url + '/' + link
     featured_image_url
+    # featured image Dictionary to be inserted into MongoDB
+    featured_image = {'featured_image_url': featured_image_url }
 
-    # ## Mars Facts
+    # ## Mars Facts ===============================================================================
     import pandas as pd
     url = 'https://galaxyfacts-mars.com/'
 
@@ -69,7 +77,7 @@ def scrape():
 
     # convert the data to a HTML table
     html_table = df.to_html()
-    html_table
+    # html_table
 
     # strip unwanted newlines to clean up the table.
     html_table.replace('\n', '')
@@ -77,14 +85,17 @@ def scrape():
     # save the table directly to a html file
     df.to_html('table.html')
 
-    # ## Mars Hemispheres
+    # html table facts Dictionary to be inserted into MongoDB
+    html_table_facts = {'html_table': html_table}
+
+    # ## Mars Hemispheres =========================================================================
     url = 'https://marshemispheres.com/'
     browser.visit(url)
 
     html = browser.html
     # Create BeautifulSoup object; parse with 'html.perser'
     soup = BeautifulSoup(html, 'html.parser')
-    print(soup.prettify())
+    # print(soup.prettify())
 
     # Retrieve the parent divs for all Hemispheres
     results = soup.find_all('div', class_='description')
@@ -106,8 +117,8 @@ def scrape():
         
         # Create BeautifulSoup object; parse with 'html.perser'
         soup = BeautifulSoup(html, 'html.parser')
-        img_results = soup.find_all('a', text='Original')
-        image_url = img_results[0]['href']
+        img_results = soup.find_all('img', class_='wide-image')
+        image_url = img_results[0]['src']
         img_url = url + image_url
         
         # print hemisphere and image url
@@ -115,18 +126,19 @@ def scrape():
         print(title)
         print(img_url)
         
-        # Dictionary to be inserted into MongoDB
+        # hemisphere Dictionary to be inserted into MongoDB
         hemisphere = {
             'title': title,
             'img_url': img_url,
         }
+        
         hemisphere_image_urls.append(hemisphere)
 
     # display hemisphere_image_urls
-    hemisphere_image_urls
+    # hemisphere_image_urls
 
     # quit browser
     browser.quit()
 
     # return the data
-    return news_title, news_p, featured_image_url, html_table, hemisphere_image_urls
+    return mars_news, featured_image, html_table_facts, hemisphere_image_urls

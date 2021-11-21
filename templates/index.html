@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Find a Phone</title>
+  <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -13,19 +13,182 @@
   <div class="container">
 
     <div class="jumbotron text-center">
-      <h1>Phone Shoppin'</h1>
-      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Find a phone!</a></p>
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
 
-    <!-- Phone Listings -->
-    <div class="row" id="phone-listings">
+    <!-- Lasted news -->
+    <div class="row" id="latest_news">
       <div class="col-md-12">
-        <h4 class="heading">{{listings.price}} {{listings.headline}}</h4>
-        <small>{{listings.reviews}}</small>
+        <h3 class="heading">Latest Mars News</h3>
+        <h4 class="heading">{{mars_news.news_title}}</h4>
+        <small>{{mars_news.news_p}}</small>
       </div>
     </div>
 
   </div>
+
+<h3><strong></strong> </h3>
+
+<div class="container p-5">
+  <div class="row align-items-md-stretch">
+    <div class="container">
+      <div class="h-100 p-2 bg-light border rounded-3 text_teal ">
+        <div class="row">
+
+
+          <div class="col-md-6 col-sm-12 px-2 py-2 ">
+            <div class="thumbnail text-left border-bottom">
+              <h3><strong>Featured Mars Image</strong> </h3>
+              <a href="{{featured_image.featured_image_url}}"  target="_blank">
+                <img src="{{featured_image.featured_image_url}}" alt="Fig1" class="img-thumbnail">
+              </a>
+              
+            </div>
+          </div>
+
+
+
+          <!-- <div class="col-md-6 col-sm-12 px-2 py-2 ">
+            {{html_table_facts.html_table}}
+          </div> -->
+
+          <div class="col-md-6 col-sm-12 px-2 py-2 ">
+            <h3><strong>Mars Facts</strong> </h3>
+            <table  class="table table-striped">
+              <thead>
+                <tr style="text-align: right;">
+                  <th></th>
+                  <th>Mars</th>
+                  <th>Earth</th>
+                </tr>
+                <tr>
+                  <th>Description</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Diameter:</th>
+                  <td>6,779 km</td>
+                  <td>12,742 km</td>
+                </tr>
+                <tr>
+                  <th>Mass:</th>
+                  <td>6.39 × 10^23 kg</td>
+                  <td>5.97 × 10^24 kg</td>
+                </tr>
+                <tr>
+                  <th>Moons:</th>
+                  <td>2</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th>Distance from Sun:</th>
+                  <td>227,943,824 km</td>
+                  <td>149,598,262 km</td>
+                </tr>
+                <tr>
+                  <th>Length of Year:</th>
+                  <td>687 Earth days</td>
+                  <td>365.24 days</td>
+                </tr>
+                <tr>
+                  <th>Temperature:</th>
+                  <td>-87 to -5 °C</td>
+                  <td>-88 to 58°C</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+     <h3 class="text-center"><strong>Mars Hemispheres</strong></h3>
+  </div>
+</div>
+
+  <main>
+    <div class="container p-5">
+      <div class="row align-items-md-stretch">
+        <div class="container">
+          <div class="h-100 p-2 bg-light border rounded-3 text_teal ">
+            <div class="row">
+
+              <div class="col-md-3 col-sm-6 px-2 py-2 ">
+                <div class="thumbnail text-center border-bottom">
+                  <a href="{{hemisphere_image_urls[0].img_url}}"  target="_blank">
+                    <img src="{{hemisphere_image_urls[0].img_url}}" alt="Fig1" class="img-thumbnail">
+                  </a>
+                  <h4><strong>{{hemisphere_image_urls[0].title}}</strong> </h4>
+                </div>
+              </div>
+    
+              <div class="col-md-3 col-sm-6 px-2 py-2 ">
+                <div class="thumbnail text-center border-bottom">
+                  <a href="{{hemisphere_image_urls[1].img_url}}"  target="_blank">
+                    <img src="{{hemisphere_image_urls[1].img_url}}" alt="Fig2" class="img-thumbnail">
+                  </a>
+                  <h4><strong>{{hemisphere_image_urls[1].title}}</strong> </h4>
+                </div>
+              </div>
+
+              <div class="col-md-3 col-sm-6 px-2 py-2 ">
+                <div class="thumbnail text-center border-bottom">
+                  <a href="{{hemisphere_image_urls[2].img_url}}"  target="_blank">
+                    <img src="{{hemisphere_image_urls[2].img_url}}" alt="Fig3" class="img-thumbnail">
+                  </a>
+                  <h4><strong>{{hemisphere_image_urls[2].title}}</strong> </h4>
+                </div>
+              </div>
+
+              <div class="col-md-3 col-sm-6 px-2 py-2 ">
+                <div class="thumbnail text-center border-bottom">
+                  <a href="{{hemisphere_image_urls[3].img_url}}"  target="_blank">
+                    <img src="{{hemisphere_image_urls[3].img_url}}" alt="Fig4" class="img-thumbnail">
+                  </a>
+                  <h4><strong>{{hemisphere_image_urls[3].title}}</strong> </h4>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>
