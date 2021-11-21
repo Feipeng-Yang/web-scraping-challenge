@@ -80,7 +80,7 @@ def scrape():
     # html_table
 
     # strip unwanted newlines to clean up the table.
-    html_table.replace('\n', '')
+    html_table =html_table.replace('\n', '')
 
     # save the table directly to a html file
     df.to_html('table.html')
